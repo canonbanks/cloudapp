@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>滑动条示例</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        #slider-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #content {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        input[type=range] {
+            width: 300px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="slider-container">
+    <label for="slider">请右滑：</label>
+    <input type="range" id="slider" min="0" max="100" value="0">
+    <div id="content">
+        <h1>欢迎！</h1>
+        <p>这是您的内容。</p>
+    </div>
+</div>
+
+<script>
+    document.getElementById('slider').addEventListener('input', function() {
+        if (this.value == 100) {
+			alert("完成解锁");
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('slider-container').style.display = 'none';
+        }
+    });
+
+    document.getElementById('slider').addEventListener('mouseup', function() {
+        if (this.value < 100) {
+            this.value = 0;
+        }
+    });
+
+    document.getElementById('slider').addEventListener('touchend', function() {
+        if (this.value < 100) {
+            this.value = 0;
+        }
+    });
+</script>
+
+</body>
+</html>
